@@ -1,0 +1,1 @@
+from .import vehicle_registration_extend

@@ -1,0 +1,169 @@
+<!-- Inherit view of Fleet Vehicle Registration -->
+<odoo>
+    <record id='fleet_vehicle_resgistration_form' model='ir.ui.view'>
+        <field name="name">fleet.vehicle.registration.form</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/field[@name='state_id']" position="replace">
+                <button name="set_released_state" class="oe_highlight" type="object" string="Released" states="complete" groups="fleet.fleet_group_manager" help="set the vehicle status to released if the status is compelte.">
+                </button>
+                <button name="update_history" type="object" string="Update Engine" context="{'history':'engine'}" icon="fa-gears" class="oe_stat_button oe_highlight" groups="fleet.fleet_group_manager"/>
+                <button name="update_history" type="object" string="Update Color" context="{'history':'color'}" icon="fa-gears" class="oe_stat_button oe_highlight" groups="fleet.fleet_group_manager"/>
+                <button name="update_history" type="object" string="Update Tire" context="{'history':'tire'}" icon="fa-gears" class="oe_stat_button oe_highlight" groups="fleet.fleet_group_manager"/>
+                <button name="update_history" type="object" string="Update Battery" context="{'history':'battery'}" icon="fa-gears" class="oe_stat_button oe_highlight" groups="fleet.fleet_group_manager" />
+                <field name="state" widget="statusbar" statusbar_visible="inspection,in_progress,complete"/>
+              </xpath>
+
+              <xpath expr="//field[@name='model_year']" position="after">
+                <field name="is_vehicle"/>
+              </xpath>
+             <xpath expr="//field[@name='license_plate']" position="after">
+                     <div class="oe_title">
+                        <label for="model_id" class="oe_edit_only"/>
+                        <h1>
+                            <field name="model_no" placeholder="e.g. Model S"/>
+                        </h1>
+                    </div>
+              </xpath>
+             <xpath expr="//field[@name='residual_value']" position="after">
+                <field name="vehicle_location_id"/>
+              </xpath>
+             <xpath expr="//field[@name='residual_value']" position="after">
+                <field name="warranty_period"/>
+              </xpath>
+             <xpath expr="//field[@name='residual_value']" position="after">
+                <field name="update_by"/>
+              </xpath>
+             <xpath expr="//field[@name='residual_value']" position="after">
+                <field name="update_date"/>
+              </xpath>
+             <xpath expr="//field[@name='is_vehicle']" position="after">
+                <field name="vechical_type_id"/>
+              </xpath>
+              <xpath expr="//field[@name='is_vehicle']" position="after">
+                <field name="reg_id"/>
+              </xpath>
+              <xpath expr="//field[@name='is_vehicle']" position="after">
+                <field name="vehicle_owner"/>
+              </xpath>
+              <xpath expr="//field[@name='is_vehicle']" position="after">
+                <field name="vechical_color_id"/>
+              </xpath>
+
+
+              <xpath expr="//field[@name='model_year']" position="after">
+                <field name="driver_identification_no"/>
+              </xpath>
+<!--              <xpath expr="//field[@name='model_year']" position="after">-->
+<!--                <field name="driver_contract_no"/>-->
+<!--              </xpath>-->
+              <xpath expr="//field[@name='model_year']" position="after">
+                <field name="vin_sn"/>
+              </xpath>
+              <xpath expr="//field[@name='residual_value']" position="after">
+                <field name="income_aac_id"/>
+              </xpath>
+              <xpath expr="//field[@name='residual_value']" position="after">
+                <field name="expence_acc_id"/>
+              </xpath>
+              <xpath expr="//field[@name='fuel_type']" position="after">
+                <field name="engine_no"/>
+              </xpath>
+              <xpath expr="//field[@name='fuel_type']" position="after">
+                <field name="engine_size"/>
+              </xpath>
+              <xpath expr="//field[@name='fuel_type']" position="after">
+                <field name="cylinder"/>
+              </xpath>
+              <xpath expr="//group[2]" position="after">
+                  <notebook>
+                  <page string="Insurance Terms">
+                            <group>
+                                <field name="payment_deduction"/>
+                                <field name="insurance_company_ids"/>
+                                <field name="insurance_type_ids"/>
+                                <field name="start_date_insurances"/>
+                                <field name="end_insurance_dates"/>
+                            </group>
+                            <group col="2">
+                                <field name="policy_numbers"/>
+                                <field name="payments"/>
+                                <field name="payment_deductions"/>
+                            </group>
+                  </page>
+                       <page string="Dimensions And Capacity">
+                                <group>
+                                    <group col="2" string="Dimensions">
+                                        <field name="vehicle_length"/>
+                                        <field name="vehicle_width"/>
+                                        <field name="vehicle_height"/>
+                                    </group>
+                                    <group col="2" string="Capacity">
+                                        <field name="seats"/>
+                                    </group>
+                                </group>
+                       </page>
+                         <page string="Features">
+                        <group string="">
+                            <group string="Tire Detail">
+                                <field name="tire_size"/>
+                                <field name="tire_srno"/>
+                                <field name="tire_issuance_date"/>
+                            </group>
+                            <group string="Battery Detail">
+                                <field name="battery_size"/>
+                                <field name="battery_srno"/>
+                                <field name="battery_issuance_date"/>
+                            </group>
+                        </group>
+                         </page>
+                       <page string="Fluids">
+                        <group>
+                            <group colspan="2" col="4" string="Fuel">
+                                <field name="fuel_type"/>
+                                <field name="fuel_qty"/>
+                                <field name="fuel_capacity"/>
+                            </group>
+                            <group colspan="2" col="4" string="Oil">
+                                <field name="oil_name"/>
+                                <field name="oil_capacity"/>
+                            </group>
+                        </group>
+                    </page>
+                      <page string="History">
+                          <group>
+                              <field name="history"/>
+                          </group>
+                      </page>
+                     <page string="Service Details">
+                        <group colspan="4" col="6">
+                            <group string="Last Service">
+                                <field name="last_service_date"/>
+                                <field name="last_change_status_date"/>
+                                <field name="last_service_by_id" readonly="1"/>
+                            </group>
+                            <group string="Next Service Due">
+                                <field name="next_service_date"/>
+                                <label for="due_odometer"/>
+                                <div>
+                                    <field name="due_odometer" class="oe_inline" readonly="1"/>
+                                    <field name="due_odometer_unit" class="oe_inline" readonly="1"/>
+                                </div>
+                            </group>
+                        </group>
+                     </page>
+                  </notebook>
+            </xpath>
+        </field>
+    </record>
+     <record id="action_partner_inherit_form" model='ir.actions.act_window'>
+        <field name="name">Driver</field>
+        <field name="res_model">res.partner</field>
+        <field name="view type">form</field>
+        <field name="view mode">form</field>
+    </record>
+    <menuitem id="menu_partner_inherit_form" name=" fleet Driver" parent="fleet.fleet_vehicles" action="action_partner_inherit_form"/>
+
+<!--    <menuitem id="menu_fleet_vehicle_mydashboard"  name=" MyDashboard" parent="menu_fleet_vehicle_dashboard" action="fleet_rent.action_res_partner"/>-->
+</odoo>
