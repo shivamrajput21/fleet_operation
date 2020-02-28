@@ -394,4 +394,39 @@
         id="damage_type_menu"
         groups="fleet.fleet_group_manager" />
 
+<!-- Form view for Vehicle Type -->
+    <record id='vehicle_type_form' model='ir.ui.view'>
+        <field name="name">vehicle.type.form</field>
+        <field name="model">vehicle.type</field>
+        <field name="arch" type="xml">
+            <form string="Vehicle Type">
+                <field name="name"/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view for Vehicle Type -->
+    <record id="vehicle_type_tree" model='ir.ui.view'>
+        <field name="name">vehicle.type.tree</field>
+        <field name="model">vehicle.type</field>
+        <field name="arch" type="xml">
+            <tree string="Vehicle Type" editable="top" delete="1">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for Vehicle Type -->
+    <record id="vehicle_type_act" model="ir.actions.act_window">
+        <field name="name">Vehicle Type</field>
+        <field name="res_model">vehicle.type</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Menuitem for Vehicle Type -->
+    <menuitem action="vehicle_type_act" id="vehicle_type"
+        parent="fleet.fleet_configuration" sequence="16"
+        groups="fleet.fleet_group_manager"/>
+
 </odoo>

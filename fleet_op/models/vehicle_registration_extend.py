@@ -151,3 +151,12 @@ class DamageTypes(models.Model):
     code = fields.Char(string='Code')
 
 
+class VehicleType(models.Model):
+    """Model Vehicle Type."""
+
+    _name = 'vehicle.type'
+    _description = 'Vehicle Type'
+
+    name = fields.Char(string="name")
+
+
