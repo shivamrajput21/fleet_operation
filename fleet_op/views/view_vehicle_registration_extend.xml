@@ -5,7 +5,7 @@
         <field name="model">fleet.vehicle</field>
         <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//header/field[@name='state_id']" position="replace">
+              <xpath expr="//header/field[@name='state_id']" position="replace">
                 <button name="set_released_state" class="oe_highlight" type="object" string="Released" states="complete" groups="fleet.fleet_group_manager" help="set the vehicle status to released if the status is compelte.">
                 </button>
                 <button name="update_history" type="object" string="Update Engine" context="{'history':'engine'}" icon="fa-gears" class="oe_stat_button oe_highlight" groups="fleet.fleet_group_manager"/>
@@ -18,7 +18,7 @@
               <xpath expr="//field[@name='model_year']" position="after">
                 <field name="is_vehicle"/>
               </xpath>
-             <xpath expr="//field[@name='license_plate']" position="after">
+              <xpath expr="//field[@name='license_plate']" position="after">
                      <div class="oe_title">
                         <label for="model_id" class="oe_edit_only"/>
                         <h1>
@@ -26,19 +26,19 @@
                         </h1>
                     </div>
               </xpath>
-             <xpath expr="//field[@name='residual_value']" position="after">
+              <xpath expr="//field[@name='residual_value']" position="after">
                 <field name="vehicle_location_id"/>
               </xpath>
-             <xpath expr="//field[@name='residual_value']" position="after">
+              <xpath expr="//field[@name='residual_value']" position="after">
                 <field name="warranty_period"/>
               </xpath>
-             <xpath expr="//field[@name='residual_value']" position="after">
+              <xpath expr="//field[@name='residual_value']" position="after">
                 <field name="update_by"/>
               </xpath>
-             <xpath expr="//field[@name='residual_value']" position="after">
+              <xpath expr="//field[@name='residual_value']" position="after">
                 <field name="update_date"/>
               </xpath>
-             <xpath expr="//field[@name='is_vehicle']" position="after">
+              <xpath expr="//field[@name='is_vehicle']" position="after">
                 <field name="vechical_type_id"/>
               </xpath>
               <xpath expr="//field[@name='is_vehicle']" position="after">
@@ -78,34 +78,34 @@
               </xpath>
               <xpath expr="//group[2]" position="after">
                   <notebook>
-                  <page string="Insurance Terms">
-                            <group>
+                      <page string="Insurance Terms">
+                            <group col="2" colspan="4">
                                 <field name="payment_deduction"/>
                                 <field name="insurance_company_ids"/>
                                 <field name="insurance_type_ids"/>
                                 <field name="start_date_insurances"/>
                                 <field name="end_insurance_dates"/>
                             </group>
-                            <group col="2">
+                            <group col="2" colspan="4">
                                 <field name="policy_numbers"/>
                                 <field name="payments"/>
                                 <field name="payment_deductions"/>
-                            </group>
-                  </page>
-                       <page string="Dimensions And Capacity">
+                                </group>
+                                </page>
+                             <page string="Dimensions And Capacity">
                                 <group>
-                                    <group col="2" string="Dimensions">
+                                    <group col="4" colspan="4" string="Dimensions">
                                         <field name="vehicle_length"/>
                                         <field name="vehicle_width"/>
                                         <field name="vehicle_height"/>
                                     </group>
-                                    <group col="2" string="Capacity">
+                                    <group col="4" colspan="4" string="Capacity">
                                         <field name="seats"/>
                                     </group>
                                 </group>
-                       </page>
-                         <page string="Features">
-                        <group string="">
+                             </page>
+                       <page string="Features">
+                            <group string="">
                             <group string="Tire Detail">
                                 <field name="tire_size"/>
                                 <field name="tire_srno"/>
@@ -116,28 +116,27 @@
                                 <field name="battery_srno"/>
                                 <field name="battery_issuance_date"/>
                             </group>
-                        </group>
-                         </page>
+                            </group>
+                       </page>
                        <page string="Fluids">
                         <group>
-                            <group colspan="2" col="4" string="Fuel">
+                            <group colspan="4" col="4" string="Fuel">
                                 <field name="fuel_type"/>
                                 <field name="fuel_qty"/>
                                 <field name="fuel_capacity"/>
                             </group>
-                            <group colspan="2" col="4" string="Oil">
+                            <group colspan="4" col="4" string="Oil">
                                 <field name="oil_name"/>
                                 <field name="oil_capacity"/>
                             </group>
                         </group>
-                    </page>
+                     </page>
                       <page string="History">
                           <group>
                               <field name="history"/>
                           </group>
                       </page>
-                     <page string="Service Details">
-                        <group colspan="4" col="6">
+                      <page string="Service Details">
                             <group string="Last Service">
                                 <field name="last_service_date"/>
                                 <field name="last_change_status_date"/>
@@ -151,10 +150,9 @@
                                     <field name="due_odometer_unit" class="oe_inline" readonly="1"/>
                                 </div>
                             </group>
-                        </group>
-                     </page>
-                  </notebook>
-            </xpath>
+                      </page>
+                </notebook>
+              </xpath>
         </field>
     </record>
      <record id="action_partner_inherit_form" model='ir.actions.act_window'>
@@ -163,7 +161,237 @@
         <field name="view type">form</field>
         <field name="view mode">form</field>
     </record>
-    <menuitem id="menu_partner_inherit_form" name=" fleet Driver" parent="fleet.fleet_vehicles" action="action_partner_inherit_form"/>
+        <menuitem id="menu_fleet_driver" name=" fleet Driver" parent="fleet.fleet_vehicles" action="action_partner_inherit_form"/>
 
-<!--    <menuitem id="menu_fleet_vehicle_mydashboard"  name=" MyDashboard" parent="menu_fleet_vehicle_dashboard" action="fleet_rent.action_res_partner"/>-->
+<!--<record id="fleet_driver_form" model="ir.ui.view">-->
+<!--            <field name="name">fleet.driver.form</field>-->
+<!--            <field name="model">res.partner</field>-->
+<!--            <field name="inherit_id" ref="base.view_partner_form" />-->
+<!--            <field name="arch" type="xml">-->
+<!--                <field name="state_id" position="before">-->
+<!--                    <field name="is_driver" />-->
+<!--                </field>-->
+<!--            </field>-->
+<!--</record>-->
+
+<!--    <menuitem id="menu_fleet_vehicle_mydashboard"  na	fleet.fleet_vehicle_model_actionme=" MyDashboard" parent="menu_fleet_vehicle_dashboard" action="fleet_rent.action_res_partner"/>-->
+
+<!-- <menuitem id="menu_Vehicle_model" name=" Vehicle model"-->
+<!--           parent="fleet.fleet_configuration"-->
+<!--           action="	fleet.fleet_vehicle_model_action"/>-->
+
+ <menuitem action="fleet.fleet_vehicle_model_action"
+        parent="fleet.fleet_configuration"
+           id="fleet.fleet_vehicle_model_menu"
+         groups="base.group_no_one"/>
+
+<!-- <menuitem action="damage_type_action"-->
+<!--        string="Damage Types" parent="fleet.fleet_configuration"-->
+<!--        id="damage_type_menu"-->
+<!--        groups="fleet.fleet_group_manager" />-->
+
+<!-- <menuitem action="next_increment_number_tree_act"-->
+<!--        string="Odometer Increment" parent="fleet.fleet_configuration"-->
+<!--        id="odometer_increment_menu"-->
+<!--        groups="fleet.fleet_group_manager"/>-->
+
+
+    <!-- color details -->
+    <record id="color_color_tree" model='ir.ui.view'>
+        <field name="name">color_color.tree</field>
+        <field name="model">color.color</field>
+        <field name="arch" type="xml">
+            <tree string="Color" editable="top" delete="1">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="color_color_act" model="ir.actions.act_window">
+        <field name="name">Color</field>
+        <field name="res_model">color.color</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+<!--    <menuitem  id="color_color_menu"-->
+<!--               parent="fleet.fleet_configuration" sequence="20"-->
+<!--               groups="fleet.fleet_group_manager"-->
+<!--               action="color_color_act"/>-->
+ <menuitem id="menu_color_color" name="color color" parent="fleet.fleet_configuration" action="color_color_act"/>
+
+   <!-- Form view of next service days -->
+    <record id='next_service_days_form' model='ir.ui.view'>
+        <field name="name">next.service.days.form</field>
+        <field name="model">next.service.days</field>
+        <field name="arch" type="xml">
+            <form string="Next Service Days">
+                <group>
+                    <field name="name"/>
+                    <field name="vehicle_id" required="1"/>
+                    <field name="days" required="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view of next service days -->
+    <record id="next_service_days_tree" model='ir.ui.view'>
+        <field name="name">next.service.days.tree</field>
+        <field name="model">next.service.days</field>
+        <field name="arch" type="xml">
+            <tree string="Next Service Days" editable="top" delete="1">
+                <field name="name"/>
+                <field name="vehicle_id" required="1"/>
+                <field name="days" required="1"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Action for next service days -->
+    <record id="next_service_days_act" model="ir.actions.act_window">
+        <field name="name">Next Service Days</field>
+        <field name="res_model">next.service.days</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menuitem for next service days -->
+    <menuitem action="next_service_days_act" id="next_service_days"
+        parent="fleet.fleet_configuration" sequence="17"/>
+
+    <!--fleet work order repair type form view-->
+    <record model='ir.ui.view' id='fleet_repair_type_form_view'>
+        <field name="name">fleet.repair.type.form</field>
+        <field name="model">repair.type</field>
+        <field name="arch" type="xml">
+            <form string="Repair Type">
+               <group>
+                    <field name="name" required="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <!-- View and action for repiar type -->
+    <record model='ir.ui.view' id='fleet_repair_type_tree_view'>
+        <field name="name">fleet.repair.type.tree</field>
+        <field name="model">repair.type</field>
+        <field name="arch" type="xml">
+            <tree string="Repair Type">
+                <field name="name" required="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Repair Type Action. -->
+    <record model='ir.actions.act_window' id='fleet_repair_type_tree_act'>
+        <field name="name">Repair Type</field>
+        <field name="res_model">repair.type</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Repair Type Menu. -->
+    <menuitem action="fleet_repair_type_tree_act"
+        string="Repair Type"
+        parent="fleet.fleet_configuration"
+        groups="fleet.fleet_group_manager"
+        id="fleet_repair_type_menu" sequence="2"/>
+
+
+    <!-- Form view of next odometer increment -->
+    <record model='ir.ui.view' id='next_increment_number_form_view'>
+        <field name="name">next.increment.number.form</field>
+        <field name="model">next.increment.number</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" />
+                    <field name="vehicle_id" required="1"/>
+                    <field name="number" required="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Editable tree view of next odometer increment -->
+    <record model='ir.ui.view' id='next_increment_number_tree_view'>
+        <field name="name">next.increment.number.tree</field>
+        <field name="model">next.increment.number</field>
+        <field name="arch" type="xml">
+            <tree string="Odometer Increment" editable="top">
+                <field name="name" />
+                <field name="vehicle_id" required="1"/>
+                <field name="number" required="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search view of next odometer increment -->
+    <record model='ir.ui.view' id='next_increment_number_search_view'>
+        <field name="name">next.increment.number.search</field>
+        <field name="model">next.increment.number</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="groupby_vehicle_next_increment" string="Vehicle"
+                domain="[]" context="{'group_by':'vehicle_id'}" />
+                <field name="vehicle_id" />
+            </search>
+        </field>
+    </record>
+
+    <!-- Action for Odometer increment -->
+    <record model='ir.actions.act_window' id='next_increment_number_tree_act'>
+        <field name="name">Odometer Increment</field>
+        <field name="res_model">next.increment.number</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menuitem for odometer increment -->
+    <menuitem action="next_increment_number_tree_act"
+        string="Odometer Increment" parent="fleet.fleet_configuration"
+        id="odometer_increment_menu" sequence="4"
+        groups="fleet.fleet_group_manager"/>
+
+    <!-- Form view of Damage Type -->
+    <record id='damage_type_form_view' model='ir.ui.view'>
+        <field name="name">damage.type.form.view</field>
+        <field name="model">damage.types</field>
+        <field name="arch" type="xml">
+            <form string="Damage Types ">
+                <group>
+                    <field name="name" required="1"/>
+                    <field name="code"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+        <!-- tree view of Damage Type -->
+    <record id='damage_type_tree_view' model='ir.ui.view'>
+        <field name="name">damage.type.tree.view</field>
+        <field name="model">damage.types</field>
+        <field name="arch" type="xml">
+            <tree string="Damage Types ">
+
+                <field name="name" required="1"/>
+                <field name="code"/>
+
+            </tree>
+        </field>
+    </record>
+
+     <!-- Action for Damage Type -->
+    <record id="damage_type_action" model="ir.actions.act_window">
+        <field name="name">Damage Types</field>
+        <field name="res_model">damage.types</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menuitem for Damage Type -->
+    <menuitem action="damage_type_action"
+        string="Damage Types" parent="fleet.fleet_configuration"
+        id="damage_type_menu"
+        groups="fleet.fleet_group_manager" />
+
 </odoo>

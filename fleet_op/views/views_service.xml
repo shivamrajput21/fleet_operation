@@ -1,0 +1,40 @@
+<odoo>
+     <!-- Form view of next service days -->
+    <record id='next_service_days_form' model='ir.ui.view'>
+        <field name="name">next.service.days.form</field>
+        <field name="model">next.service.days</field>
+        <field name="arch" type="xml">
+            <form string="Next Service Days">
+                <group>
+                    <field name="name"/>
+                    <field name="vehicle_id" required="1"/>
+                    <field name="days" required="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view of next service days -->
+    <record id="next_service_days_tree" model='ir.ui.view'>
+        <field name="name">next.service.days.tree</field>
+        <field name="model">next.service.days</field>
+        <field name="arch" type="xml">
+            <tree string="Next Service Days" editable="top" delete="1">
+                <field name="name"/>
+                <field name="vehicle_id" required="1"/>
+                <field name="days" required="1"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Action for next service days -->
+    <record id="next_service_days_act" model="ir.actions.act_window">
+        <field name="name">Next Service Days</field>
+        <field name="res_model">next.service.days</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menuitem for next service days -->
+    <menuitem action="next_service_days_act" id="next_service_days"
+        parent="fleet.fleet_configuration" sequence="17"/>
+</odoo>

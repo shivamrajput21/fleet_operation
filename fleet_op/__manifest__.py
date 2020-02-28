@@ -9,7 +9,7 @@
     # Data
     'data': [
         'views/view_vehicle_registration_extend.xml'
-    ],
+            ],
     'installable': True,
     'application': True,
     'author': 'shivam'

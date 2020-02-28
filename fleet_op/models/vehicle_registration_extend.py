@@ -73,7 +73,81 @@ class VehicleRegistration(models.Model):
                               ('complete','Completed')], string="State")
 
 
-class ResUsers(models.Model):
+class Respartner(models.Model):
     """Res Users Model."""
 
-    _inherit = "res.users"
+    _inherit = "res.partner"
+
+
+
+class fleet_driver(models.Model):
+
+    _inherit = 'res.partner'
+
+    is_driver = fields.Boolean(string="is driver")
+
+
+
+class odoometer(models.Model):
+    _name = "odoometer"
+    description= "odoometr detals"
+
+    name = fields.Char(string="Name")
+    vehicle_id = fields.Many2one("fleet.vehicle",string="vehicle id")
+    number = fields.Float(string="odoometer increment")
+
+
+
+class ColorColor(models.Model):
+    """Model Color."""
+
+    _name = 'color.color'
+    _description = 'Colors'
+
+    code = fields.Char(string='Code')
+    name = fields.Char(string='Name')
+
+
+
+class NextServiceDays(models.Model):
+    """Model Next Service Days."""
+
+    _name = 'next.service.days'
+    _description = 'Next Service days'
+
+    name = fields.Char(string='Name', translate=True)
+    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle Id')
+    days = fields.Integer(string='Days')
+
+
+
+class RepairType(models.Model):
+    """Repair Type."""
+
+    _name = 'repair.type'
+    _description = 'Vehicle Repair Type'
+
+    name = fields.Char(string='Repair Type', size=264,
+                       translate=True)
+
+class NextIncrementNumber(models.Model):
+    """Model Next Increment NUmber."""
+
+    _name = 'next.increment.number'
+    _description = 'Next Increment Number'
+
+    name = fields.Char(string='Name', size=64, translate=True)
+    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle Id')
+    number = fields.Float(string='Odometer Increment')
+
+
+class DamageTypes(models.Model):
+    """Model Damage Types."""
+
+    _name = 'damage.types'
+    _description = 'Damage Types'
+
+    name = fields.Char(string='Name', traslate=True)
+    code = fields.Char(string='Code')
+
+
