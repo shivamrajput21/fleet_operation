@@ -429,4 +429,305 @@
         parent="fleet.fleet_configuration" sequence="16"
         groups="fleet.fleet_group_manager"/>
 
+
+          <!-- Advance search view of fleet vehicle -->
+      <record model='ir.ui.view' id='fleet_vehicle_advance_search_form_view'>
+        <field name="name">fleet.vehicle.advance.search.form</field>
+        <field name="model">fleet.vehicle.advance.search</field>
+        <field name="arch" type="xml">
+            <form string="Vehicle Advance Search">
+                <sheet>
+                    <separator string="General Search" colspan="4" />
+                    <group colspan="4" col="4">
+                        <field name="fmp_id"
+                            options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                        <field name="make_id"
+                            options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                        <field name="model_id"
+                            domain="[('brand_id','=',make_id)]"
+                            options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                        <field name="state" />
+                        <field name="vehical_color_id"
+                            options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                        <field name="vechical_type_id"
+                            options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                        <field name="division_id" invisible="1"
+                            options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                        <field name="vin_no" />
+                        <field name="engine_no" />
+                        <field name="driver_identification_no" />
+                    </group>
+                    <separator string="By Date Range" colspan="4" />
+                    <group colspan="4" col="4">
+                        <field name="acquisition_date" />
+                        <field name="acquisition_date_to" />
+                        <field name="last_service_date" />
+                        <field name="last_service_date_to" />
+                        <field name="next_service_date" />
+                        <field name="next_service_date_to" />
+                        <field name="release_date_from" />
+                        <field name="release_date_to" />
+                    </group>
+                <footer>
+                    <button name="get_vehicle_detail_by_advance_search"
+                        type="object" string="Search" class="oe_highlight" />
+                </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for advance search of vehicle -->
+    <record model='ir.actions.act_window' id='fleet_vehicle_advance_search_act'>
+        <field name="name">Vehicles Search</field>
+        <field name="res_model">fleet.vehicle.advance.search</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menuitem Reports Menu -->
+    <menuitem name="Reports" parent="fleet.menu_root" id="fleet.menu_fleet_reporting"
+        sequence="3" groups="fleet.fleet_group_manager"/>
+
+    <!-- Menuitem for vehicle advance search views -->
+    <menuitem action="fleet_vehicle_advance_search_act"
+        string="Vehicles Search" parent="fleet.menu_fleet_reporting"
+        id="fleet_advance_search_menu" sequence="3"
+        groups="fleet.fleet_group_manager,fleet.fleet_group_user" />
+
+
+ <!-- Vehicle Work order advance search view -->
+    <record model='ir.ui.view' id='fleet_work_order_advance_search_form_view'>
+        <field name="name">fleet.work_order.advance.search.form</field>
+        <field name="model">fleet.work.order.search</field>
+        <field name="arch" type="xml">
+            <form string="Work Order Advance Search">
+                <sheet>
+                    <separator string="By Status and Priority" col="4" />
+                    <group colspan="4" col="4">
+                        <field name="state" />
+                        <field name="priority" />
+                    </group>
+                    <separator string="By Responsible and Division" col="4" />
+                    <group colspan="4" col="4" >
+                        <field name="work_order_id"
+                            options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                        <field name="fmp_id"
+                            options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                        <field name="make_id"
+                            options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                        <field name="model_id" domain="[('brand_id','=',make_id)]"
+                            options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                        <field name="vehical_division_id" invisible="1"
+                            options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                        <field name="part_id"
+                            options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                        <field name="cost_subtype_id"
+                            options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                        <field name="repair_type_id"
+                            options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                        <!-- <field name="open_days"/> -->
+                    </group>
+                    <separator string="By Date Range" colspan="4" />
+                    <group colspan="4" col="4">
+                        <field name="issue_date_from" />
+                        <field name="issue_date_to" />
+                        <field name="open_date_from" />
+                        <field name="open_date_to" />
+                        <field name="close_date_form" />
+                        <field name="close_date_to" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="get_work_order_detail_by_advance_search"
+                        type="object" string="Search" class="oe_highlight" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Work Order Search Action. -->
+    <record model='ir.actions.act_window' id='fleet_work_order_advance_search_act'>
+        <field name="name">Services Search</field>
+        <field name="res_model">fleet.work.order.search</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <!-- Work Order Search Menu. -->
+    <menuitem action="fleet_work_order_advance_search_act" string="Services Search"
+              parent="fleet.menu_fleet_reporting" id="work_order_advance_search_sub_menu"
+              sequence="2" groups="fleet.fleet_group_manager,fleet.fleet_group_user"/>
+<!--<menuitem action="fleet.fleet_vehicle_log_services_action"-->
+<!--        string="service log Type"-->
+<!--        parent="fleet.fleet_vehicles"/>-->
+
+
+    <!--  Search view of write-off  -->
+    <record model="ir.ui.view" id="fleet_wittenoff_search">
+        <field name="name">fleet.wittenoff.search</field>
+        <field name="model">fleet.wittenoff</field>
+        <field name="arch" type="xml">
+            <search string="All Write off vehicles">
+                <filter name="groupby_vehicle" string="Vehicle" domain="[]"
+                    context="{'group_by':'vehicle_id'}" />
+                <field name="vehicle_fmp_id" string="Vehicle ID"
+                    filter_domain="[('vehicle_fmp_id','ilike',self)]" />
+                <field name="vehicle_plate" string="License Plate"
+                    filter_domain="[('vehicle_plate','ilike',self)]" />
+           </search>
+        </field>
+    </record>
+
+     <!--  Form view of write-off  -->
+    <record id='fleet_vehicle_wittenoff_form_view' model='ir.ui.view'>
+        <field name="name">fleet.vehicle.wittenoff.off</field>
+        <field name="model">fleet.wittenoff</field>
+        <field name="arch" type="xml">
+            <form string="Vehicle Witten-off">
+                <header>
+                    <button name="confirm_writeoff"
+                        string="Confirm" states="draft" type="object"
+                        class="oe_highlight"
+                        confirm="Are you sure you want to confirm this write off?"/>
+                    <button name="cancel_writeoff"
+                        states="confirm"
+                        string="Cancel" type="object" class="oe_highlight"
+                        confirm="Are you sure you want to close this write off?"/>
+                    <button name="action_set_to_draft"
+                        states="cancel"
+                        string=" Set to Draft" type="object" class="oe_highlight"
+                        confirm="Are you sure you want to set Draft this write off?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,cancel"/>
+                </header>
+                <sheet>
+                    <div>
+                        <h1>
+                            <field name="name" nolabel="1" readonly="1"/>
+                        </h1>
+                    </div>
+                <group>
+                    <group>
+                        <separator string="Vehicle Information"/>
+                        <field name="vehicle_id" readonly="1"/>
+                        <field name="vehicle_fmp_id" readonly="1"/>
+                        <field name="vehicle_plate" readonly="1"/>
+                        <field name="color_id" readonly="1" string="Vehicle Color"
+                            options="{'no_open': True, 'create': false, 'create_edit': false}"/>
+                        <field name="province_id" readonly="1"
+                            options="{'no_open': True, 'create': false, 'create_edit': false}" />
+                        <label for="odometer" />
+                         <div>
+                             <field name="odometer" class="oe_inline" string="Vehicle Odometer" readonly="1"/>
+                             <field name="odometer_unit" class="oe_inline" readonly="1"/>
+                         </div>
+                        <field name="driver_id" readonly="1" context="{'is_driver':True}"
+                            options="{'no_open': True, 'create': false, 'create_edit': false}"
+                            string="Vehicle Driver"/>
+                        <field name="contact_no" readonly="1"/>
+                    </group>
+                    <group>
+                        <separator string="Assignment"/>
+
+                        <field name="division_id" invisible="1" readonly="1"
+                            options="{'no_open': True, 'create': false, 'create_edit': false}" />
+                        <field name="date_cancel" readonly="1" string="Cancel Date"/>
+                        <field name="cancel_by_id" readonly="1" string="Cancel By"
+                           options="{'no_open': True, 'create': false, 'create_edit': false}"/>
+                        <field name="report_date"
+                            attrs="{'readonly': [('state','in',('confirm','cancel'))]}"/>
+                        <field name="write_off_type"
+                            attrs="{'readonly': [('state','in',('confirm','cancel'))]}"/>
+                       <field name="cost_esitmation" string="Expense To Repair"
+                           attrs="{'readonly': [('state','in',('confirm','cancel'))]}"/>
+                    </group>
+                </group>
+                <notebook colspan="4">
+                    <page string="Damages and Repair">
+                        <group>
+                            <group>
+                                <!-- <separator string="Damages Checklist"/> -->
+                                <field name="damage_type_ids" widget="many2many_checkboxes"/>
+                            </group>
+                            <group>
+                                <!-- <separator string="Repair Checklist"/> -->
+                                <field name="repair_type_ids" widget="many2many_checkboxes"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Write-off Pictures">
+                        <field name="multi_images" widget="many2many_binary"/>
+                    </page>
+                    <page string="Preventive Cause Notes">
+                        <!-- <h1>
+                            <label for="note" string="Preventive Note" />
+                        </h1> -->
+                        <field name="note" placeholder="Preventive Note.." colspan="4"
+                            attrs="{'readonly':[('state','in',['confirm','cancel'])]}"
+                            nolabel="1"/>
+                    </page>
+                    <page string="Other Note" colspan="4">
+                       <!--  <h1>
+                            <label for="cancel_note" string="Other Note" />
+                        </h1> -->
+                        <field name="cancel_note" placeholder="Extra Note.." colspan="4"
+                            attrs="{'readonly':[('state','in',['confirm','cancel'])]}" />
+                    </page>
+                </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--  Tree view of fleet write-off -->
+    <record model='ir.ui.view' id='fleet_vehicle_wittenoff_tree_view'>
+        <field name="name">fleet.vehicle.wittenoff.off</field>
+        <field name="model">fleet.wittenoff</field>
+        <field name="arch" type="xml">
+            <tree string="Vehicle Witten-off" create="false">
+                <field name="vehicle_id" />
+                <field name="vehicle_plate" />
+                <field name="report_date" />
+                <field name="write_off_type" />
+                <field name="cost_esitmation"/>
+                <field name="date_cancel" />
+                <field name="cancel_by_id" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <!--  Action for write-off -->
+    <record model='ir.actions.act_window' id='fleet_vehicle_witten_off_act'>
+        <field name="name">Vehicles Write-off</field>
+        <field name="res_model">fleet.wittenoff</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+            Click to create a new write off entry.
+          </p><p>
+            OpenERP helps you keeping track of all the write off done
+            on your vehicle. Write off can be of many type: general accident
+            insurgent accident etc.
+          </p>
+        </field>
+    </record>
+
+    <!-- Menuitem for write-off -->
+    <menuitem id="vehicle_written_off_menu_id" string="Vehicles Write-off"
+        groups="fleet.fleet_group_manager"
+        action="fleet_vehicle_witten_off_act" parent = "fleet.fleet_vehicles" sequence="4" />
+
+ <!-- Inherited Form View For Vehicle log service -->
+      <record id="view_fleet_log_services" model="ir.ui.view">
+        <field name="name">fleet.vehicle.log.services.form</field>
+        <field name="model">fleet.vehicle.log.services</field>
+        <field name="inherit_id" ref="fleet_vehicle_log_services_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vehicle_id']" position="attributes">
+            </xpath>
+        </field>
+      </record>
 </odoo>
